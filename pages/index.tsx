@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
@@ -113,9 +112,7 @@ export default function Home() {
     populateCharacters();
   }, []);
 
-  const sortedList = () => {
-    return [...characters].sort(chooseSort(filter));
-  };
+  const sortedList = [...characters].sort(chooseSort(filter));
 
   if (characters.length === 0) {
     return "LOADING....";
@@ -130,7 +127,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        {sortedList().map((c: Character) => (
+        {sortedList.map((c: Character) => (
           <Card key={c.id} character={c} />
         ))}
       </div>
