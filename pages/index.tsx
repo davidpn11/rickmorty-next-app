@@ -101,12 +101,12 @@ export default function Home() {
   const [filter, setFilter] = useState<FilterValue>("NAME");
 
   const populateCharacters = async () => {
-    const result = await getCharacters();
-    // const allChars = await getAllCharacters();
+    // const result = await getCharacters();
+    const allChars = await getAllCharacters();
     // console.log({ result });
     // console.log();
-    // setCharacters(allChars);
-    setCharacters(result.data.characters.results);
+    setCharacters(allChars);
+    // setCharacters(result.data.characters.results);
   };
 
   useEffect(() => {
@@ -116,6 +116,10 @@ export default function Home() {
   const sortedList = () => {
     return [...characters].sort(chooseSort(filter));
   };
+
+  if (characters.length === 0) {
+    return "LOADING....";
+  }
 
   return (
     <div className="w-full flex flex-col items-center">
