@@ -8,7 +8,7 @@ type Props = {
 const isSelected = (isSelected: boolean) => {
   return !isSelected
     ? "hover:bg-gray-200 bg-gray-100 text-gray-700 border-gray-600 transition"
-    : "hover:bg-teal-700 hover:text-teal-100 bg-teal-100 text-teal-700 border-teal-600 transition";
+    : "hover:bg-purple-500 hover:text-gray-100 bg-purple-100 text-purple-500 border-purple-300 transition";
 };
 
 export default function Filters(props: Props) {
@@ -19,9 +19,9 @@ export default function Filters(props: Props) {
         <button
           onClick={onClick("NAME")}
           className={`text-base  rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
-        border duratin-200 ease-in-out
+        border duration-200 ease-in-out
         ${isSelected(props.filterValue === "NAME")}
-        border-teal-600 transition`}
+        border-purple-300 transition`}
         >
           Name
         </button>
@@ -30,7 +30,7 @@ export default function Filters(props: Props) {
           className={`text-base  rounded-r-none rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
           ${isSelected(props.filterValue === "SPECIES")}
         border duration-200 ease-in-out
-        border-gray-600 transition`}
+        border-purple-300 transition`}
         >
           Species
         </button>
@@ -39,7 +39,7 @@ export default function Filters(props: Props) {
           className={`text-base  rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
           ${isSelected(props.filterValue === "LOCATION")}
           border duration-200 ease-in-out
-          border-gray-600 transition`}
+          border-purple-300 transition`}
         >
           Location
         </button>

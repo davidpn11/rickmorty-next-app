@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filter";
 import { chooseSort } from "../utils/helpers";
-import { Masonry } from "masonic";
+import { Masonry, useMasonry, usePositioner, useResizeObserver } from "masonic";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql/",
@@ -131,8 +131,13 @@ export default function Home() {
           <Card key={c.id} data={c} />
         ))}
       </div> */}
-      <div className="w-full mx-4">
-        <Masonry items={sortedList} render={Card} />
+      <div className="mx-4" style={{ width: "80%" }}>
+        <Masonry
+          columnCount={3}
+          columnGutter={30}
+          items={sortedList}
+          render={Card}
+        />
       </div>
     </div>
   );
