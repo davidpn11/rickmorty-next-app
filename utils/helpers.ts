@@ -1,7 +1,6 @@
 import { Character, FilterValue } from "../pages";
 
 export function sortByName(a: Character, b: Character) {
-  console.log(a, b);
   if (!a.name || !b.name) return 0;
   const nameA = a.name.toLocaleLowerCase();
   const nameB = b.name.toLocaleLowerCase();

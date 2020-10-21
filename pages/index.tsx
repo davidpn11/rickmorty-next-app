@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Filters from "../components/Filter";
 import { chooseSort } from "../utils/helpers";
+import { Masonry } from "masonic";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql/",
@@ -81,11 +82,12 @@ async function getAllCharacters(): Promise<Character[]> {
     });
     let promises = [];
     const nPages = meta.data.characters.info.pages;
-    for (let i = 0; i < nPages; i++) {
+    for (let i = 1; i <= nPages; i++) {
       promises = [...promises, getCharactersByPage(i)];
     }
     const res = await Promise.all(promises);
-    const allChars = res.reduce((acc, current) => {
+    const allChars = res.reduce((acc, current, index) => {
+      console.log(index, current);
       return [...acc, ...current.data.characters.results];
     }, []);
 
@@ -101,11 +103,9 @@ export default function Home() {
 
   const populateCharacters = async () => {
     // const result = await getCharacters();
-    const allChars = await getAllCharacters();
-    // console.log({ result });
-    // console.log();
-    setCharacters(allChars);
     // setCharacters(result.data.characters.results);
+    const allChars = await getAllCharacters();
+    setCharacters(allChars);
   };
 
   useEffect(() => {
@@ -113,23 +113,26 @@ export default function Home() {
   }, []);
 
   const sortedList = [...characters].sort(chooseSort(filter));
+  console.log(sortedList);
 
   if (characters.length === 0) {
     return "LOADING....";
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center px-6">
       <Filters filterValue={filter} onChange={(f) => setFilter(f)} />
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-4 my-6 px-4 md:px-6 lg:px-8">
-        <Head>
-          <title>Rick & Morty list</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
+      <Head>
+        <title>Rick & Morty list</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {/* <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-4 my-6 px-4 md:px-6 lg:px-8">
         {sortedList.map((c: Character) => (
-          <Card key={c.id} character={c} />
+          <Card key={c.id} data={c} />
         ))}
+      </div> */}
+      <div className="w-full mx-4">
+        <Masonry items={sortedList} render={Card} />
       </div>
     </div>
   );
