@@ -7,7 +7,7 @@ export function LabButton(
   return (
     <button
       {...props}
-      className="p-0 w-20 h-20 bg-purple-300 rounded-full hover:bg-purple-500 active:shadow-xl mouse shadow transition ease-in duration-200 focus:outline-none flex items-center justify-center">
+      className="p-0 w-20 h-20 bg-purple-300 rounded-full hover:opacity-75 shadow-2xl mouse hover:shadow-lg transition ease-in duration-200 focus:outline-none flex items-center justify-center">
       <LabIcon fill="white" width={50} />
     </button>
   );

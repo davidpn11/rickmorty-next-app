@@ -8,6 +8,15 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
+      opacity: {
+        0: '0',
+        10: '0.1',
+        25: '.25',
+        50: '.5',
+        75: '.75',
+        90: '0.9',
+        100: '1',
+      },
       colors: {
         purple: {
           100: '#c5b1e1',
