@@ -7,6 +7,8 @@ import { Loader } from '../components/Loader';
 import { useConfig, useFilters } from '../store';
 import { Header } from '../components/Header';
 import { Character, getAllCharacters } from './api/hello';
+import { PerfBall } from '../components/PerfBall';
+// import '../styles/perfBall.css';
 
 export default function Home() {
   const { filter } = useFilters();
@@ -49,6 +51,8 @@ export default function Home() {
             <Masonry columnCount={3} columnGutter={30} items={sortedList} render={Card} />
           </div>
         )}
+
+        <PerfBall />
       </div>
     </>
   );

@@ -1,12 +1,9 @@
-import { useState } from 'react';
-
-// function
-
 export type SwitchOption<T> = {
   text: string;
   value: T;
 };
 type Props<A, B> = {
+  id: string;
   value: A | B;
   optionA: SwitchOption<A>;
   optionB: SwitchOption<B>;
@@ -14,15 +11,16 @@ type Props<A, B> = {
 };
 
 export function Switch<A extends string, B extends String>(props: Props<A, B>) {
-  const toggle = () =>
+  const toggle = () => {
     props.value === props.optionA.value
       ? props.onChange(props.optionB.value)
       : props.onChange(props.optionA.value);
+  };
 
   const isChecked = props.value === props.optionB.value ? 'translate-x-full' : '';
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pointer" onClick={toggle}>
       <label htmlFor="unchecked" className="mt-3 inline-flex items-center cursor-pointer">
         <span className="mr-3 text-md">{props.optionA.text}</span>
         <span className="relative">
@@ -30,7 +28,7 @@ export function Switch<A extends string, B extends String>(props: Props<A, B>) {
           <span
             className={`absolute block w-4 h-4 mt-1 ml-1 rounded-full shadow inset-y-0 left-0 focus-within:shadow-outline transition-transform duration-300 ease-in-out bg-purple-300 transform ${isChecked}`}>
             <input
-              id="unchecked"
+              id={props.id}
               type="checkbox"
               className="absolute opacity-0 w-0 h-0"
               onClick={toggle}
