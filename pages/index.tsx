@@ -6,7 +6,7 @@ import { Masonry } from 'masonic';
 import { Loader } from '../components/Loader';
 import { useConfig, useFilters } from '../store';
 import { Header } from '../components/Header';
-import { Character, getAllCharacters } from './api/hello';
+import { Character, getAllCharacters } from './api';
 import { PerfBall } from '../components/PerfBall';
 // import '../styles/perfBall.css';
 

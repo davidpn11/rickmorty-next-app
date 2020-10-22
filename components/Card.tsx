@@ -1,4 +1,4 @@
-import { Character } from '../pages/api/hello';
+import { Character } from '../pages/api';
 
 type Props = {
   data: Character;

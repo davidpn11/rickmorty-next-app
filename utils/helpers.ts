@@ -1,4 +1,5 @@
-import { Character, FilterValue } from "../pages";
+import { Character } from '../pages/api';
+import { FilterValue } from '../store';
 
 export function sortByName(a: Character, b: Character) {
   if (!a.name || !b.name) return 0;
@@ -45,11 +46,11 @@ export function sortByLocation(a: Character, b: Character) {
 
 export function chooseSort(filterValue: FilterValue) {
   switch (filterValue) {
-    case "SPECIES":
+    case 'SPECIES':
       return sortBySpecies;
-    case "LOCATION":
+    case 'LOCATION':
       return sortByLocation;
-    case "NAME":
+    case 'NAME':
     default:
       return sortByName;
   }
