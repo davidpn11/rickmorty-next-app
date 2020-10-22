@@ -67,10 +67,7 @@ export function ConfigDrawer() {
         value={listType}
         optionA={listOptionA}
         optionB={listOptionB}
-        onChange={a => {
-          console.log(a);
-          setListType(a);
-        }}
+        onChange={a => setListType(a)}
       />
       <PerfBallButton showPerfBall={showPerfBall} onClick={() => togglePerfBall()} />
     </div>
