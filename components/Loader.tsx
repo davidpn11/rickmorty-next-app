@@ -1,4 +1,4 @@
-import { ReactComponent as RickMortyIcon } from '../assets/images/RickMorty.svg';
+import { ReactComponent as RickMortyIcon } from '../assets/RickMorty.svg';
 
 type Props = {
   mode: 'FULL_SCREEN' | 'CARD_LOADER';
