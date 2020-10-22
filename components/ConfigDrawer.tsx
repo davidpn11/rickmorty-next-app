@@ -12,25 +12,17 @@ const listOptionB: SwitchOption<'fast_list'> = {
 };
 
 export function ConfigDrawer() {
-  const {
-    open,
-    listType,
-    setListType,
-  } = useConfig();
-  const isOpen = open ? 'hidden' : 'flex';
+  const { open, listType, setListType } = useConfig();
+  const isOpen = open ? 'flex' : 'hidden';
 
   return (
     <div
-      className={`${isOpen} transition py-24 w-full bg-transparent text-white`}>
-      Little labbbb
+      className={`${isOpen} transition py-24 w-full bg-transparent text-white flex justify-between`}>
       <Switch
         value={listType}
         optionA={listOptionA}
         optionB={listOptionB}
-        onChange={a => {
-          console.log('AZAO', a);
-          setListType(a);
-        }}
+        onChange={a => setListType(a)}
       />
     </div>
   );

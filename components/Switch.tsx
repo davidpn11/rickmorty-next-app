@@ -13,33 +13,18 @@ type Props<A, B> = {
   onChange: (v: A | B) => void;
 };
 
-export function Switch<
-  A extends string,
-  B extends String
->(props: Props<A, B>) {
+export function Switch<A extends string, B extends String>(props: Props<A, B>) {
   const toggle = () =>
     props.value === props.optionA.value
       ? props.onChange(props.optionB.value)
       : props.onChange(props.optionA.value);
 
-  console.log({
-    value: props.value,
-    b: props.optionB.value,
-  });
-  const isChecked =
-    props.value === props.optionB.value
-      ? 'translate-x-full'
-      : '';
+  const isChecked = props.value === props.optionB.value ? 'translate-x-full' : '';
 
-  console.log(isChecked);
   return (
     <div className="flex flex-col">
-      <label
-        htmlFor="unchecked"
-        className="mt-3 inline-flex items-center cursor-pointer">
-        <span className="mr-3 text-sm">
-          {props.optionA.text}
-        </span>
+      <label htmlFor="unchecked" className="mt-3 inline-flex items-center cursor-pointer">
+        <span className="mr-3 text-md">{props.optionA.text}</span>
         <span className="relative">
           <span className="block w-10 h-6 bg-gray-400 rounded-full shadow-inner"></span>
           <span
@@ -52,9 +37,7 @@ export function Switch<
             />
           </span>
         </span>
-        <span className="ml-3 text-sm">
-          {props.optionB.text}
-        </span>
+        <span className="ml-3 text-md">{props.optionB.text}</span>
       </label>
     </div>
   );
