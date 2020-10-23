@@ -5,8 +5,6 @@ import { Header } from './Header';
 export default function Nav() {
   const router = useRouter();
 
-  console.log(router);
-
   const border = (path: string) =>
     path === router.pathname ? 'border-teal-dark' : 'border-transparent';
 
