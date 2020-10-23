@@ -1,11 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useConfig, useFilters } from '../store';
-import { Character, getAllCharacters } from './api';
-// import '../styles/perfBall.css';
-
 export default function Home() {
   return (
-    <div className="flex flex-row h-full mt-24 items-center">
+    <div className="flex flex-row h-full mt-32 items-center lg:mx-12">
       <div className="lg:w-3/5 xl:w-2/5 container mx-auto px-6 md:px-12 relative z-10 flex items-center justify-center">
         <div className="flex flex-col items-start relative z-10 text-center">
           <h1 className="font-roboto-slab text-4xl sm:text-5xl text-orange-500 leading-tight mt-4 text-center">
