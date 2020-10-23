@@ -76,4 +76,8 @@ a {
   @apply bg-universe-blue;
 }
 
+.pickle-rick {
+  animation-duration: 3s !important;
+}
+
 @tailwind utilities;

@@ -26,6 +26,7 @@ module.exports = {
         'card-gray': '#6d7b83',
         'greyish-blue': '#202a47',
         'universe-blue': '#1f3a89',
+        pickle: '#316759',
       },
     },
   },
