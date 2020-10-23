@@ -12,7 +12,7 @@ export default function Home() {
             Let's dig deeper into front end performance! With a little help from Rick, we
             see how small changes in your app can have huge impacts.
           </p>
-          <p className="font-source-sans-pro text-gray-500 mt-6 text-lg px-12">
+          <p className="font-source-sans-pro text-gray-500 mt-8 text-lg px-12">
             So lets dive into Rick's universe and see how we can make your application
             blazing fast
           </p>
