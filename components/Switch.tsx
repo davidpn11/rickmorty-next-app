@@ -20,9 +20,9 @@ export function Switch<A extends string, B extends String>(props: Props<A, B>) {
   const isChecked = props.value === props.optionB.value ? 'translate-x-full' : '';
 
   return (
-    <div className="flex flex-col pointer" onClick={toggle}>
+    <div className="flex flex-col pointer uppercase" onClick={toggle}>
       <label htmlFor="unchecked" className="mt-3 inline-flex items-center cursor-pointer">
-        <span className="mr-3 text-md">{props.optionA.text}</span>
+        <span className="mr-3 text-lg">{props.optionA.text}</span>
         <span className="relative">
           <span className="block w-10 h-6 bg-gray-400 rounded-full shadow-inner"></span>
           <span
@@ -35,7 +35,7 @@ export function Switch<A extends string, B extends String>(props: Props<A, B>) {
             />
           </span>
         </span>
-        <span className="ml-3 text-md">{props.optionB.text}</span>
+        <span className="ml-3 text-lg">{props.optionB.text}</span>
       </label>
     </div>
   );

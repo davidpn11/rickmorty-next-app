@@ -6,9 +6,11 @@ export type Config = {
   open: boolean;
   listType: 'fast_list' | 'slow_list';
   loadingType: 'normal' | 'lazy';
+  showAllData: 'all' | 'partial';
   showPerfBall: boolean;
-  toggleConfig: () => void;
+  toggleConfig: (data: 'all' | 'partial') => void;
   togglePerfBall: () => void;
+  toggleShowAllData: () => void;
   setListType: (list: 'fast_list' | 'slow_list') => void;
   setLoadingType: (list: 'normal' | 'lazy') => void;
 };
@@ -30,6 +32,9 @@ export const useFilters = create<Filters>(set => ({
 export const useConfig = create<Config>(set => ({
   open: false,
   showPerfBall: false,
+  showAllData: 'partial',
+  toggleShowAllData: () =>
+    set(state => ({ showAllData: state.showAllData === 'partial' ? 'all' : 'partial' })),
   toggleConfig: () => set(state => ({ open: !state.open })),
   listType: 'slow_list',
   loadingType: 'normal',

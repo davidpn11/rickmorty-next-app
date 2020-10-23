@@ -7,24 +7,28 @@ import { Loader } from '../components/Loader';
 import { PerfBall } from '../components/PerfBall';
 import { useConfig, useFilters } from '../store';
 import { chooseSort } from '../utils/helpers';
-import { Character, getAllCharacters } from './api';
+import { Character, getAllCharacters, getCharacters } from './api';
 
 export default function CharactersList() {
-  const { listType } = useConfig();
+  const { listType, showAllData } = useConfig();
   const { filter } = useFilters();
 
   const [characters, setCharacters] = useState<Character[]>([]);
 
   const populateCharacters = async () => {
-    // const result = await getCharacters();
-    // setCharacters(result.data.characters.results);
-    const allChars = await getAllCharacters();
-    setCharacters(allChars);
+    setCharacters([]);
+    if (showAllData === 'all') {
+      const allChars = await getAllCharacters();
+      setCharacters(allChars);
+    } else {
+      const result = await getCharacters();
+      setCharacters(result.data.characters.results);
+    }
   };
 
   useEffect(() => {
     populateCharacters();
-  }, []);
+  }, [showAllData]);
 
   const sortedList = [...characters].sort(chooseSort(filter));
 
