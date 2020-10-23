@@ -30,6 +30,8 @@ export default function CharactersList() {
     populateCharacters();
   }, [showAllData]);
 
+  console.log(characters);
+
   const sortedList = [...characters].sort(chooseSort(filter));
 
   if (characters.length === 0) {

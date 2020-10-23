@@ -13,6 +13,9 @@ export type Character = {
   location: {
     name: string;
   };
+  episode: {
+    id: string;
+  }[];
 };
 
 export async function getCharacters() {
@@ -28,6 +31,9 @@ export async function getCharacters() {
             id
             species
             image
+            episode {
+              id
+            }
             location {
               name
             }
@@ -49,10 +55,25 @@ export async function getCharactersByPage(page: number) {
             id
             species
             image
+            episode {
+              id
+            }
             location {
               name
             }
           }
+        }
+      }
+    `,
+  });
+}
+
+export async function getEpisodeName(id: string) {
+  return client.query({
+    query: gql`
+    query {
+        episode(id: ${id}) {
+          name
         }
       }
     `,

@@ -7,7 +7,11 @@ type Props = {
 export function Loader({ mode = 'FULL_SCREEN' }: Props) {
   switch (mode) {
     case 'CARD_LOADER':
-      return null;
+      return (
+        <div className="w-full flex items-center justify-center">
+          <RickMortyIcon className="animate-spin" width={50} fill="#ED8936" />
+        </div>
+      );
     case 'FULL_SCREEN':
     default:
       return (
