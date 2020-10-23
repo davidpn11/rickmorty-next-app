@@ -32,25 +32,29 @@ export default function CharactersList() {
 
   const sortedList = [...characters].sort(chooseSort(filter));
 
-  if (characters.length === 0) {
-    return <Loader mode="FULL_SCREEN" />;
-  }
+  const loadList = () => {
+    if (characters.length === 0) {
+      return <Loader mode="FULL_SCREEN" />;
+    } else {
+      return listType === 'slow_list' ? (
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-4 my-6 px-4 md:px-6 lg:px-8">
+          {sortedList.map((c: Character) => (
+            <Card key={c.id} data={c} />
+          ))}
+        </div>
+      ) : (
+        <div className="mx-4 w-4/5">
+          <Masonry columnCount={3} columnGutter={30} items={sortedList} render={Card} />
+        </div>
+      );
+    }
+  };
 
   return (
     <>
       <Header />
       <div className="w-full flex flex-col items-center px-6">
-        {listType === 'slow_list' ? (
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:justify-center gap-4 my-6 px-4 md:px-6 lg:px-8">
-            {sortedList.map((c: Character) => (
-              <Card key={c.id} data={c} />
-            ))}
-          </div>
-        ) : (
-          <div className="mx-4 w-4/5">
-            <Masonry columnCount={3} columnGutter={30} items={sortedList} render={Card} />
-          </div>
-        )}
+        {loadList()}
         <PerfBall />
       </div>
     </>

@@ -15,7 +15,7 @@ export function Loader({ mode = 'FULL_SCREEN' }: Props) {
     case 'FULL_SCREEN':
     default:
       return (
-        <div className="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-transparent">
+        <div className="mt-24">
           <div className="animate-bounce">
             <div className="animate-pulse">
               <RickMortyIcon width={200} fill="#ED8936" />

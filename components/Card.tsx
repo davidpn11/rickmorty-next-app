@@ -123,9 +123,6 @@ export default function Card({ data }: Props) {
         </div>
         <div className="pt-4 pb-2">
           <EpisodesList state={episodes} onChevronClick={hideEpisodes} />
-          {/* <span className="inline-block bg-purple-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2">
-            {data.species}
-          </span> */}
         </div>
       </div>
     </div>
