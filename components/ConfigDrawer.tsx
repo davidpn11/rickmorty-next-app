@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useConfig } from '../store';
+import { PerfBall } from './PerfBall';
 import { Switch, SwitchOption } from './Switch';
 
 const listOptionA: SwitchOption<'slow_list'> = {
@@ -51,6 +53,10 @@ export function ConfigDrawer() {
     setLoadingType,
   } = useConfig();
   const isOpen = open ? 'flex' : 'hidden';
+
+  useEffect(() => {
+    showPerfBall && togglePerfBall();
+  }, [open]);
 
   return (
     <div

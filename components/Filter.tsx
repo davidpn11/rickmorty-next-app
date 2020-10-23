@@ -12,27 +12,22 @@ const isSelected = (isSelected: boolean) => {
 };
 
 export default function Filters(props: Props) {
-  const onClick = (value: FilterValue) => () =>
-    props.onChange(value);
+  const onClick = (value: FilterValue) => () => props.onChange(value);
   return (
-    <div className="p-5">
+    <div className="p-5 pl-0">
       <div className="flex justify-content items-baseline flex-wrap">
         <button
           onClick={onClick('NAME')}
           className={`text-base  rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
         border duration-200 ease-in-out
-        ${isSelected(
-          props.filterValue === 'NAME',
-        )}
+        ${isSelected(props.filterValue === 'NAME')}
         border-purple-300 transition`}>
           Name
         </button>
         <button
           onClick={onClick('SPECIES')}
           className={`text-base  rounded-r-none rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
-          ${isSelected(
-            props.filterValue === 'SPECIES',
-          )}
+          ${isSelected(props.filterValue === 'SPECIES')}
         border duration-200 ease-in-out
         border-purple-300 transition`}>
           Species
@@ -40,9 +35,7 @@ export default function Filters(props: Props) {
         <button
           onClick={onClick('LOCATION')}
           className={`text-base  rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
-          ${isSelected(
-            props.filterValue === 'LOCATION',
-          )}
+          ${isSelected(props.filterValue === 'LOCATION')}
           border duration-200 ease-in-out
           border-purple-300 transition`}>
           Location
