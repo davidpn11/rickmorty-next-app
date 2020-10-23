@@ -8,7 +8,7 @@ function Field({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
       <span className="text-sm text-gray-100">{label}</span>
-      <span className="text-lg hover:text-purple-500 text-gray-500 cursor-pointer">
+      <span className="text-lg hover:text-orange-500 text-gray-500 cursor-pointer">
         {value}
       </span>
     </div>
@@ -25,7 +25,7 @@ export default function Card({ data }: Props) {
         alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-gray-200 tracking-wide hover:text-purple-500 cursor-pointer">
+        <div className="font-bold text-xl mb-2 text-gray-200 tracking-wide hover:text-orange-500 cursor-pointer">
           {data.name}
         </div>
         <Field label="Location" value={data.location.name} />

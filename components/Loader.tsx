@@ -14,7 +14,7 @@ export function Loader({ mode = 'FULL_SCREEN' }: Props) {
         <div className="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-transparent">
           <div className="animate-bounce">
             <div className="animate-pulse">
-              <RickMortyIcon width={200} fill="firebrick" />
+              <RickMortyIcon width={200} fill="#ED8936" />
             </div>
           </div>
         </div>
