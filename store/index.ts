@@ -8,9 +8,9 @@ export type Config = {
   loadingType: 'normal' | 'lazy';
   showAllData: 'all' | 'partial';
   showPerfBall: boolean;
-  toggleConfig: (data: 'all' | 'partial') => void;
+  toggleConfig: () => void;
   togglePerfBall: () => void;
-  toggleShowAllData: () => void;
+  toggleShowAllData: (data: 'all' | 'partial') => void;
   setListType: (list: 'fast_list' | 'slow_list') => void;
   setLoadingType: (list: 'normal' | 'lazy') => void;
 };

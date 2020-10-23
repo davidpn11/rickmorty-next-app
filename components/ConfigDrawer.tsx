@@ -80,7 +80,7 @@ export function ConfigDrawer() {
           value={showAllData}
           optionA={dataOptionA}
           optionB={dataOptionB}
-          onChange={() => toggleShowAllData()}
+          onChange={() => toggleShowAllData(showAllData)}
         />
         <div className="mt-4">
           <Switch
