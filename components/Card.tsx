@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Character, getEpisodeName } from '../pages/api';
+import { useConfig } from '../store';
 import { Loader } from './Loader';
+import { ReactComponent as ChevronUp } from '../assets/chevron-up.svg';
 
 type Props = {
   data: Character;
@@ -27,9 +29,19 @@ type EpisodesState =
   | {
       tag: 'ready';
       episodes: string[];
+    }
+  | {
+      tag: 'loaded';
+      episodes: string[];
     };
 
-function EpisodesList({ state }: { state: EpisodesState }) {
+function EpisodesList({
+  state,
+  onChevronClick,
+}: {
+  state: EpisodesState;
+  onChevronClick: () => void;
+}) {
   if (state.tag === 'loading') {
     return <Loader mode="CARD_LOADER" />;
   }
@@ -43,6 +55,11 @@ function EpisodesList({ state }: { state: EpisodesState }) {
             {ep}
           </span>
         ))}
+        <ChevronUp
+          onClick={onChevronClick}
+          className="h-10 w-full flex justify-center mt-6 cursor-pointer"
+          width={50}
+        />
       </div>
     );
   }
@@ -51,15 +68,35 @@ function EpisodesList({ state }: { state: EpisodesState }) {
 
 export default function Card({ data }: Props) {
   const [episodes, setEpisodes] = useState<EpisodesState>({ tag: 'initial' });
-  const showEpisodes = async () => {
-    try {
-      setEpisodes({ tag: 'loading' });
+
+  const { loadingType } = useConfig();
+
+  const loadEps = async () => {
+    if (loadingType === 'lazy') {
       const promises = data.episode.map(ep => getEpisodeName(ep.id));
       const episResult = await Promise.all(promises);
       const epiArray: string[] = episResult.map(res => res.data.episode.name);
-      console.log(epiArray);
-      setEpisodes({ tag: 'ready', episodes: epiArray });
-      // console.log({ epis });
+      setEpisodes({ tag: 'loaded', episodes: epiArray });
+    }
+  };
+
+  const hideEpisodes = () => {
+    setEpisodes({ tag: 'initial' });
+  };
+
+  const showEpisodes = async () => {
+    try {
+      if (episodes.tag === 'loaded') {
+        setEpisodes({ tag: 'ready', episodes: episodes.episodes });
+      } else {
+        setEpisodes({ tag: 'loading' });
+        const promises = data.episode.map(ep => getEpisodeName(ep.id));
+        const episResult = await Promise.all(promises);
+        const epiArray: string[] = episResult.map(res => res.data.episode.name);
+        console.log(epiArray);
+        setEpisodes({ tag: 'ready', episodes: epiArray });
+        // console.log({ epis });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +114,8 @@ export default function Card({ data }: Props) {
       <div className="px-6 py-4">
         <div
           className="font-bold text-xl mb-2 text-gray-200 tracking-wide hover:text-orange-500 cursor-pointer"
-          onClick={showEpisodes}>
+          onClick={showEpisodes}
+          onMouseEnter={loadEps}>
           {data.name}
         </div>
         <Field label="Location" value={data.location.name} />
@@ -88,7 +126,7 @@ export default function Card({ data }: Props) {
           </span>
         </div>
         <div className="pt-4 pb-2">
-          <EpisodesList state={episodes} />
+          <EpisodesList state={episodes} onChevronClick={hideEpisodes} />
           {/* <span className="inline-block bg-purple-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2">
             {data.species}
           </span> */}

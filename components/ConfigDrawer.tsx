@@ -73,29 +73,37 @@ export function ConfigDrawer() {
 
   return (
     <div
-      className={`${isOpen} flex transition border w-full bg-transparent text-white flex flex-row justify-between border-universe-blue rounded-lg mt-4 px-24 py-12`}>
-      {/* <Switch
-        id="loading-switch"
-        value={loadingType}
-        optionA={loadingOptionA}
-        optionB={loadingOptionB}
-        onChange={a => setLoadingType(a)}
-      /> */}
-      <Switch
-        id="list-switch"
-        value={listType}
-        optionA={listOptionA}
-        optionB={listOptionB}
-        onChange={a => setListType(a)}
-      />
-      <Switch
-        id="data-switch"
-        value={showAllData}
-        optionA={dataOptionA}
-        optionB={dataOptionB}
-        onChange={() => toggleShowAllData()}
-      />
-      <PerfBallButton showPerfBall={showPerfBall} onClick={() => togglePerfBall()} />
+      className={`${isOpen} flex transition border w-full bg-transparent text-white flex flex-row justify-between border-universe-blue rounded-lg mt-4 py-12`}>
+      <div className="flex flex-col w-full items-center">
+        <Switch
+          id="data-switch"
+          value={showAllData}
+          optionA={dataOptionA}
+          optionB={dataOptionB}
+          onChange={() => toggleShowAllData()}
+        />
+        <div className="mt-4">
+          <Switch
+            id="loading-switch"
+            value={loadingType}
+            optionA={loadingOptionA}
+            optionB={loadingOptionB}
+            onChange={a => setLoadingType(a)}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col w-full items-center">
+        <Switch
+          id="list-switch"
+          value={listType}
+          optionA={listOptionA}
+          optionB={listOptionB}
+          onChange={a => setListType(a)}
+        />
+        <div className="mt-4">
+          <PerfBallButton showPerfBall={showPerfBall} onClick={() => togglePerfBall()} />
+        </div>
+      </div>
     </div>
   );
 }
