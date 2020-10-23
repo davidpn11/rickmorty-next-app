@@ -93,15 +93,11 @@ export default function Card({ data }: Props) {
         const promises = data.episode.map(ep => getEpisodeName(ep.id));
         const episResult = await Promise.all(promises);
         const epiArray: string[] = episResult.map(res => res.data.episode.name);
-        console.log(epiArray);
         setEpisodes({ tag: 'ready', episodes: epiArray });
-        // console.log({ epis });
       }
     } catch (error) {
       console.error(error);
     }
-    // const ids = data.episode.map(ep => ep.id);
-    // console.log(ids);
   };
   return (
     <div className="card rounded overflow-hidden shadow-lg my-4 m-6 bg-card-gray min-w-full">
